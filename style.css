@@ -1,0 +1,42 @@
+body, html {
+    height: 100%;
+    margin:0 20px;
+    overflow: hidden;
+}
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding: 20px;
+}
+.container {
+ display: grid;
+ grid-template-columns: 3fr 1fr;
+ grid-template-rows: 1f 2fr 4fr;
+ grid-template: 
+                "wynik wynik wynik wynik"
+                "advance advance advance basic"
+                "advance advance advance basic"
+                "numbers numbers numbers basic"
+                "numbers numbers numbers basic"
+                "numbers numbers numbers basic"
+                "numbers numbers numbers basic";
+}
+
+.advance {grid-area: advance; display: grid;grid-template-columns: repeat(3, 1fr);}
+.numbers {grid-area: numbers; display: grid; grid-template-columns: repeat(3, 1fr);}
+.basic {grid-area: basic; display: grid;}
+.wynik {grid-area: wynik; display: grid;
+}
+.display{
+    
+}
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 2px solid yellow;
+    background-color: gray;
+    cursor: pointer;
+}
