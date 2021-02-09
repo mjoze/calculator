@@ -28,16 +28,22 @@ class Calculator {
         this.value++;
     }
 
+    executeOperation(newValue) {
+        this.operation.push(newValue);
+        this.display.textContent = newValue;
+        this.num = newValue;
+    }
+
     add() {
         this.valueAssignment();
-        this.operation.push(this.a + this.b);
-        this.display.textContent = this.a + this.b;
+        // const newValue = String(this.a + this.b)
+        this.executeOperation(String(this.a + this.b));
     }
 
     subtraction() {
         this.valueAssignment();
-        this.operation.push(this.a - this.b);
-        this.display.textContent = this.a - this.b;
+        // const newValue = String(this.a - this.b)
+        this.executeOperation(String(this.a - this.b))
     }
 
     changeSign(e) {
@@ -69,7 +75,10 @@ class Calculator {
 
     getNumber(e) {
         if (e.target.dataset.number && this.isNumber) {
-            this.num += e.target.dataset.number;
+            (this.num[0] === "0") ?
+                this.num = e.target.dataset.number
+                :
+                this.num += e.target.dataset.number;
             this.display.textContent = this.num;
         }
     }
@@ -100,6 +109,20 @@ class Calculator {
         this.isNumber = true;
     }
 
+    removeValue(e) {
+        if (e.target.dataset.remove) {
+            if (this.num.length === 1) {
+                this.num = '0';
+                this.display.textContent = this.num
+            }
+            if (this.num.length > 1) {
+                const newVAlue = this.num.slice(0, -1);
+                this.num = newVAlue
+                this.display.textContent = newVAlue;
+            }
+        }
+    }
+
     getValue() {
         document.querySelector(".container").addEventListener('click', (e) => {
             this.getNumber(e);
@@ -107,8 +130,11 @@ class Calculator {
             this.getScore(e);
             this.changeSign(e)
             this.addComa(e);
+            this.removeValue(e);
         });
     }
+
+
 }
 
 const ab = new Calculator("p", ".display", ".history");
