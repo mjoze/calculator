@@ -5,7 +5,6 @@ class Calculator {
 
     constructor(p, display, history) {
         this.operation = [];
-        // this.valueOperator = 0;
         this.history = {};
         this.operator;
         this.num = '';
@@ -35,32 +34,27 @@ class Calculator {
 
     add() {
         this.valueAssignment();
-        // const newValue = String(this.a + this.b)
-        this.executeOperation(String(this.a + this.b));
+        this.executeOperation(Number(this.a + this.b));
     }
 
     subtraction() {
         this.valueAssignment();
-        // const newValue = String(this.a - this.b)
-        this.executeOperation(String(this.a - this.b))
+        this.executeOperation(Number(this.a - this.b))
     }
 
     multiply() {
         this.valueAssignment();
-        // const newValue = String(this.a - this.b)
-        this.executeOperation(String(this.a * this.b))
+        this.executeOperation(Number(this.a * this.b))
     }
 
     division() {
         this.valueAssignment();
-        // const newValue = String(this.a - this.b)
-        this.executeOperation(String(this.a / this.b))
+        this.executeOperation(Number(this.a / this.b))
     }
 
     divisionOne() {
         this.valueAssignment();
-        // const newValue = String(this.a - this.b)
-        this.executeOperation(String(1 / (this.a)))
+        this.executeOperation(Number(1 / (this.a)))
     }
 
     changeSign(e) {
@@ -122,7 +116,6 @@ class Calculator {
             case '/':
                 this.division();
                 this.displayHistory();
-
         }
     }
 
@@ -177,9 +170,12 @@ class Calculator {
         }
     }
 
-    handleCE() { }
-
-    handleC() { }
+    handleCE(e) {
+        if (e.target.dataset.ce) {
+            this.num = 0;
+            this.display.textContent = this.num;
+        }
+    }
 
     helpFunctions(e) {
         this.changeSign(e)
@@ -189,6 +185,7 @@ class Calculator {
         this.element(e);
         this.percent(e);
         this.removeValue(e);
+        this.handleCE(e);
     }
 
     getValue() {
@@ -199,8 +196,6 @@ class Calculator {
             this.helpFunctions(e)
         });
     }
-
-
 }
 
 const ab = new Calculator("p", ".display", ".history");
