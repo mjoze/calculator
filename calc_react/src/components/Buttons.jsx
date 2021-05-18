@@ -5,12 +5,20 @@ import { StoreContext } from "../store/StoreProvider";
 
 
 const Buttons = () => {
-    const { } = useContext(StoreContext);
+    const { number, setNumber, value, setValue } = useContext(StoreContext);
 
     const button =
         data.map(btn => {
 
             const handleClick = (event) => {
+                if (Number(event.target.innerText)) {
+                    setValue(value + event.target.innerText)
+                }
+                else if (!Number(event.target.innerText)) {
+                    setNumber([...number, Number(value)])
+                    setValue("");
+                }
+                ;
 
             };
 
@@ -18,9 +26,13 @@ const Buttons = () => {
         });
 
     return (
-        <main>
-            {button}
-        </main>
+        <div>
+            <h2>Wyświetlacz:{value}</h2>
+            <p>Wynik:</p>
+            <main>
+                {button}
+            </main>
+        </div>
     );
 };
 
