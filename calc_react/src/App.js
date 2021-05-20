@@ -1,5 +1,6 @@
 import React from "react";
-import Buttons from "./components/Buttons";
+import Keybord from "./components/Keybord";
+import Display from "./components/Display";
 
 import StoreProvider from "./store/StoreProvider";
 
@@ -9,7 +10,9 @@ const App = () => {
     return (
         <StoreProvider >
             <h1>Calculator</h1>
-            <Buttons />
+            <Display />
+            <Keybord />
+
         </StoreProvider>
 
     )
