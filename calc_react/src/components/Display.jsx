@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { StoreContext } from "../store/StoreProvider";
+
 
 const Display = () => {
+    const { value, number } = useContext(StoreContext);
+
+    useEffect(() => {
+        console.log('object');
+    }, [])
     return (
-        <h1>Wyświetlacz</h1>
+        <div>
+            <h1>Wyświetlacz: {value}</h1>
+        </div>
     );
 };
 

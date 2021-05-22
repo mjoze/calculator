@@ -3,10 +3,12 @@ import React, { createContext, useState } from "react";
 export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
-    const [number, setNumber] = useState([]);
     const [value, setValue] = useState("");
+    const [numbers, setNumbers] = useState("");
+    const [operator, setOperator] = useState("")
+
     return (
-        <StoreContext.Provider value={{ number, setNumber, value, setValue }}>
+        <StoreContext.Provider value={{ value, setValue, numbers, setNumbers, operator, setOperator }}>
             {children}
         </StoreContext.Provider>
     )
