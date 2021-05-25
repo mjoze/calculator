@@ -3,29 +3,45 @@ import { StoreContext } from "../store/StoreProvider";
 
 
 const Keybord = () => {
-
-    const { numbers, value, setValue, setNumbers, operator, setOperator } = useContext(StoreContext);
+    const { actualNumber, setActualNumber, numbers, setNumbers, operator, setOperator, flag, setFlag, freezeNumber, setFreezeNumber } = useContext(StoreContext);
 
     const handleClickNumber = (event) => {
-
-        if (Number(event.target.innerText)) {
-            setValue(value + event.target.innerText);
-        };
-
+        if (!flag) {
+            setActualNumber("" + event.target.innerText);
+            setFlag(true);
+        } else if (flag) {
+            setActualNumber(actualNumber + event.target.innerText);
+        }
     };
 
     const handleClickOperations = (event) => {
-        setValue("")
-        if (!operator) {
-            setOperator(event.target.innerText)
+        setFlag(false);
+        if (operator) {
+            const score = (Number(actualNumber) + Number(numbers[numbers.length - 1]));
+            setActualNumber(score);
+            setNumbers([...numbers, actualNumber, score]);
         } else {
-            console.log(operator);
+            setOperator(event.target.innerText);
+            setNumbers([...numbers, actualNumber]);
+            setActualNumber("");
+            setFlag(true);
         }
-    }
+    };
 
     const handleClickScore = () => {
-        setOperator("")
-    }
+        if (operator === "") {
+            const score = Number(actualNumber) + Number(freezeNumber)
+            setActualNumber(score);
+            setNumbers([...numbers, score]);
+        } else {
+            const score = Number(actualNumber) + Number(numbers[numbers.length - 1]);
+            setActualNumber(score);
+            setNumbers([...numbers, actualNumber, score]);
+            setFlag(false);
+            setOperator("");
+            setFreezeNumber(actualNumber);
+        }
+    };
 
     return (
         <div className="keybord">

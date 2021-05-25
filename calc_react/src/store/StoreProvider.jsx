@@ -3,12 +3,16 @@ import React, { createContext, useState } from "react";
 export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
-    const [value, setValue] = useState("");
-    const [numbers, setNumbers] = useState("");
+    const [flag, setFlag] = useState(true);
+    const [actualNumber, setActualNumber] = useState(0);
+    const [numbers, setNumbers] = useState([]);
+    const [freezeNumber, setFreezeNumber] = useState("");
     const [operator, setOperator] = useState("")
 
     return (
-        <StoreContext.Provider value={{ value, setValue, numbers, setNumbers, operator, setOperator }}>
+        <StoreContext.Provider value={{
+            actualNumber, setActualNumber, numbers, setNumbers, operator, setOperator, flag, setFlag, freezeNumber, setFreezeNumber
+        }}>
             {children}
         </StoreContext.Provider>
     )

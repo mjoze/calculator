@@ -3,14 +3,14 @@ import { StoreContext } from "../store/StoreProvider";
 
 
 const Display = () => {
-    const { value, number } = useContext(StoreContext);
+    const { actualNumber, setActualNumber } = useContext(StoreContext);
 
     useEffect(() => {
         console.log('object');
     }, [])
     return (
         <div>
-            <h1>Wyświetlacz: {value}</h1>
+            <h1>Wyświetlacz: {actualNumber}</h1>
         </div>
     );
 };
