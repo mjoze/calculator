@@ -3,15 +3,17 @@ import React, { createContext, useState } from "react";
 export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
-    const [flag, setFlag] = useState(true);
-    const [actualNumber, setActualNumber] = useState(0);
-    const [numbers, setNumbers] = useState([]);
-    const [freezeNumber, setFreezeNumber] = useState("");
-    const [operator, setOperator] = useState("")
+    const [number, setNumber] = useState({
+        flag: true,
+        actualNumber: 0,
+        numbers: [],
+        freezeNumber: 0,
+        operator: ""
+    });
 
     return (
         <StoreContext.Provider value={{
-            actualNumber, setActualNumber, numbers, setNumbers, operator, setOperator, flag, setFlag, freezeNumber, setFreezeNumber
+            number, setNumber
         }}>
             {children}
         </StoreContext.Provider>

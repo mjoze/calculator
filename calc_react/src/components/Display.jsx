@@ -3,8 +3,8 @@ import { StoreContext } from "../store/StoreProvider";
 
 
 const Display = () => {
-    const { actualNumber, setActualNumber } = useContext(StoreContext);
-
+    const { number } = useContext(StoreContext);
+    const { actualNumber } = number
     useEffect(() => {
         console.log('object');
     }, [])
